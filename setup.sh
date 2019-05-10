@@ -45,12 +45,12 @@ if [[ $DOSETUP =~ "y" ]] ; then
   sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
   cd
 
-  wget https://github.com/genix-project/genix/releases/download/v0.2.0.2/genix-unix-64.tar.gz
-  tar -xzf genix-unix-64.tar.gz
-  chmod -R 755 genix-unix-64
+  wget https://github.com/farsider350/mn-setup-script/releases/download/testnet/mn-release.tar.gz
+  tar -xzf mn-release.tar.gz
+  chmod -R 755 mn-release
   rm /usr/bin/genix*
-  mv genix-unix-64/genix* /usr/bin
-  rm -r genix-unix-64
+  mv mn-release/genix* /usr/bin
+  rm -r mn-release
 
   sudo apt-get install -y ufw
   sudo ufw allow ssh/tcp
@@ -82,7 +82,7 @@ for i in `seq 1 1 $MNCOUNT`; do
   read ALIAS
 
   echo ""
-  echo "Enter port 43649 for node $ALIAS"
+  echo "Enter port 32538 for node $ALIAS"
   read PORT
 
   echo ""
@@ -133,7 +133,7 @@ for i in `seq 1 1 $MNCOUNT`; do
 
   mv genix.conf_TEMP $CONF_DIR/genix.conf
 
-  sh ~/bin/genixd_$ALIAS.sh
+  sh ~/bin/genixd_$ALIAS.sh -testnet
 done
 
 echo "Do you want to install sentinel? (no if you did it before) [y/n]"
@@ -159,6 +159,9 @@ fi
   sudo apt-get -y install virtualenv
 
   git clone https://github.com/Twinky-kms/sentinel.git
+  cd sentinel
+  git checkout test-net-mns
+  cd ..
 
   echo "setting up sentinel..."
 
