@@ -46,7 +46,7 @@ if [[ $DOSETUP =~ "y" ]] ; then
   cd
 
   wget https://github.com/farsider350/mn-setup-script/releases/download/testnet/mn-release.tar.gz
-  tar -xzf mn-release.tar.gz
+  tar -xzf mn-release.tar.gz mn-release
   chmod -R 755 mn-release
   rm /usr/bin/genix*
   mv mn-release/genix* /usr/bin
