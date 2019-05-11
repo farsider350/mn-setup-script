@@ -132,7 +132,6 @@ for i in `seq 1 1 $MNCOUNT`; do
   echo "masternodeprivkey=$PRIVKEY" >> genix.conf_TEMP
   sudo ufw allow $PORT/tcp
 
-  cp genix.conf_TEMP ~/.genixcore/genix.conf
   mv genix.conf_TEMP $CONF_DIR/genix.conf
 
   sh ~/bin/genixd_$ALIAS.sh -testnet
@@ -168,7 +167,7 @@ fi
   echo "setting up sentinel..."
 
   echo "dash_conf=$CONF_DIR/genix.conf" >> sentinel.conf_TEMP
-  echo "network=mainnet" >> sentinel.conf_TEMP
+  echo "network=testnet" >> sentinel.conf_TEMP
   echo "db_name=database/sentinel.db" >> sentinel.conf_TEMP
   echo "db_driver=sqlite" >> sentinel.conf_TEMP
 
