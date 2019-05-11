@@ -113,6 +113,7 @@ for i in `seq 1 1 $MNCOUNT`; do
   echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> genix.conf_TEMP
   echo "rpcallowip=127.0.0.1" >> genix.conf_TEMP
   echo "rpcport="`shuf -i 10000-30000 -n 1` >> genix.conf_TEMP
+  echo "txindex=1" >> genix.conf_TEMP
   echo "listen=1" >> genix.conf_TEMP
   echo "server=1" >> genix.conf_TEMP
   echo "daemon=1" >> genix.conf_TEMP
@@ -131,6 +132,7 @@ for i in `seq 1 1 $MNCOUNT`; do
   echo "masternodeprivkey=$PRIVKEY" >> genix.conf_TEMP
   sudo ufw allow $PORT/tcp
 
+  cp genix.conf_TEMP ~/.genixcore/genix.conf
   mv genix.conf_TEMP $CONF_DIR/genix.conf
 
   sh ~/bin/genixd_$ALIAS.sh -testnet
@@ -158,9 +160,9 @@ fi
 
   sudo apt-get -y install virtualenv
 
-  git clone https://github.com/Twinky-kms/sentinel.git
+  git clone https://github.com/farsider350/sentinel.git
   cd sentinel
-  git checkout test-net-mns
+  git checkout genix-testnet
   cd ..
 
   echo "setting up sentinel..."
